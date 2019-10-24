@@ -30,7 +30,6 @@
         this.axios.get('https://jsonplaceholder.typicode.com/posts/' + this.$route.params.id)
           .then((res) => {
             this.article = res.data;
-            console.log(this.article);
           })
           .catch(error => {
             console.log(error.response)

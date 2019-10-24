@@ -63,17 +63,17 @@
       this.getUserInfo();
     },
     methods: {
-      // fetch api data
+      // fetch user data
       getUserInfo() {
         this.axios.get('https://jsonplaceholder.typicode.com/posts?userId=' + this.$route.params.id)
           .then((res) => {
             this.items = res.data;
-            console.log(this.items);
           })
           .catch(error => {
             console.log(error.response)
           });
       },
+      // pagination functions
       getRowCount(items) {
         return items.length
       },

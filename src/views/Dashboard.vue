@@ -4,20 +4,20 @@
       <b-col sm="6" lg="6">
         <b-card no-body class="bg-warning">
           <b-card-body class="pb-0">
-            <h4 class="mb-0">9.823</h4>
+            <h4 class="mb-0">{{totalUsers}}</h4>
             <p>Users</p>
           </b-card-body>
-          <card-line3-chart-example style="height:70px;" height="70"/>
+          <div style="height:70px;" height="70"/>
         </b-card>
       </b-col>
 
       <b-col sm="6" lg="6">
         <b-card no-body class="bg-danger">
           <b-card-body class="pb-0">
-            <h4 class="mb-0">9.823</h4>
+            <h4 class="mb-0">{{totalArticles}}</h4>
             <p>Articles</p>
           </b-card-body>
-          <card-bar-chart-example style="height:70px;" height="70"/>
+          <div style="height:70px;" height="70"/>
         </b-card>
       </b-col>
     </b-row>
@@ -25,29 +25,38 @@
 </template>
 
 <script>
-import CardLine3ChartExample from './dashboard/CardLine3ChartExample'
-import CardBarChartExample from './dashboard/CardBarChartExample'
-import { Callout } from '@coreui/vue'
-
 export default {
   name: 'Dashboard',
   components: {},
   data: function () {
-    return {}
+    return {
+      totalUsers: '',
+      totalArticles:''
+    }
   },
   created() {
-    this.getUserInfo();
-    this.getUserInfo();
+    this.getUsers();
+    this.getArticles();
   },
   computed: {},
 
   methods: {
-    // fetch api data
-    getUserInfo() {
+    // fetch user data
+    getUsers() {
       this.axios.get('https://jsonplaceholder.typicode.com/users')
         .then((res) => {
-          this.items = res.data;
-          console.log(this.items);
+          this.totalUsers = res.data.length;
+          this.users = res.data;
+        })
+        .catch(error => {
+          console.log(error.response)
+        });
+    },
+    // fetch article data
+    getArticles() {
+      this.axios.get('https://jsonplaceholder.typicode.com/posts')
+        .then((res) => {
+          this.totalArticles = res.data.length;
         })
         .catch(error => {
           console.log(error.response)

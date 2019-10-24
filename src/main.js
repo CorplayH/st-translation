@@ -8,16 +8,10 @@ import Vue from 'vue'
 import BootstrapVue from 'bootstrap-vue'
 import App from './App'
 import router from './router'
+// import axios as fetching tool
 import axios from 'axios'
 import VueAxios from 'vue-axios'
-
-
 Vue.prototype.axios= axios
-
-
-// todo
-// cssVars()
-
 
 Vue.use(BootstrapVue)
 Vue.use(VueAxios, axios)
